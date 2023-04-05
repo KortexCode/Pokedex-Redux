@@ -6,6 +6,7 @@ import { consultApiData } from '@utils/pokemonApi';
 import { handleSetPokemons } from '@utils/pokemonRedux';
 import { getPokemonDetails } from '@utils/pokemonApi';
 import { useDispatch, useSelector } from 'react-redux';
+import { handleSetPokemonsWithDetails } from '../utils/pokemonRedux';
 
 function App() {
 
@@ -16,16 +17,8 @@ function App() {
         
         const axiosRest = consultApiData();
 
-        axiosRest.then(result => result.data.results)
-        .then(pokemon => {
-           //Debemos extraer la lista de urls de cada pokemon
-            Promise.all(pokemon.map((item)=> {
-                return getPokemonDetails(item.url)
-            }))
-            .then(rest => {
-                dispatch(handleSetPokemons(rest))
-            });   
-        })
+        axiosRest.then(result => 
+            dispatch(handleSetPokemonsWithDetails(result.data.results)))
         .catch(e => console.log(e))
         
     },[]);

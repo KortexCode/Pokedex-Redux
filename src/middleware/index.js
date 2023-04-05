@@ -9,6 +9,7 @@ const logger = (store) => (next) => (action) => {
     console.log(action);
     next(action);
 }
+
 const newPokemon = (store) => (next) => (actionData) => {
     const feature = [ {name: "Misaka", url:"Kawaii waifu"}, ...actionData.action.payload];
     const updateAction = {...actionData, action: {...actionData.action, payload: feature}}
