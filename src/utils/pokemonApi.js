@@ -1,13 +1,18 @@
 import axios from "axios";
 
+const axiosApi = axios.create({
+    baseURL: "https://pokeapi.co/api/v2/",
+})
+
 
 function consultApiData(){
-    const axio = axios.create({
-        baseURL: "https://pokeapi.co/api/v2/pokemon?limit=151",
-    })
-
-    return axio;
+    return axiosApi("pokemon?limit=151");
 }
 
-export {consultApiData}
+function getPokemonDetails(url){
+    const axioRest = axios.get(url).then(rest => rest.data);
+    return axioRest;
+}
+
+export {consultApiData, getPokemonDetails}
 

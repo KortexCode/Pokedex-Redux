@@ -8,11 +8,27 @@ function PokemonCard({pokemon}) {
                 <div className='border-b border-slate-300' >
                     <p className='text-center'>{pokemon.name}</p>
                 </div>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/150.png" alt={pokemon.name}
+                <img src={pokemon.sprites.front_default} alt={pokemon.name}
                     className='w-full border-b border-slate-300'    
                 />
                 <div>
-                    <p>Description</p>
+                    <p className='text-center'>Description</p>
+                    <ul>
+                        <li>
+                            Type:
+                            <ul>
+                                <li>{pokemon.types[0].type.name}</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Abilitys:
+                            <ul>
+                                {pokemon.abilities.map((item)=> 
+                                    (<li key={item.ability.name} >{item.ability.name}</li>))
+                                }
+                            </ul>
+                        </li>      
+                    </ul>
                 </div>
             </div>
          
