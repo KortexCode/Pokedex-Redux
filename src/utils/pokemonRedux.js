@@ -3,14 +3,26 @@ import { getPokemonDetails } from "./pokemonApi";
 //Estado inicial
 const initialState = {
     pokemons : [],
+    loading: true,
+    addedToFavorites: [],
 }
 //Tipos de acciones
 const actionType = {
     setPokemons : "Set Pokemons",
+    setLoading: "Stop loading",
+    setAddedToFavorites: "Add to favorites"
 }
 //Objeto reductor
 const objectReducer = (state, payload) => ({
     [actionType.setPokemons] : {
+        ...state,
+        pokemons: payload,
+    },
+    [actionType.setLoading] : {
+        ...state,
+        loading: payload,
+    },
+    [actionType.setAddedToFavorites] : {
         ...state,
         pokemons: payload,
     }
@@ -32,11 +44,33 @@ const handleSetPokemonsWithDetails = (pokemons = []) => (dispatch) => {
         return getPokemonDetails(item.url)
     }))
     .then(rest => {
-        dispatch(handleSetPokemons(rest))
+        dispatch(handleSetLoading(false));
+        dispatch(handleSetPokemons(rest));  
     });   
 }
 
-export {pokemonsReducer, handleSetPokemons, handleSetPokemonsWithDetails}
+const handleSetLoading = (payload) => ( 
+    {
+        type :actionType.setLoading,
+        payload,
+    }
+)
+
+const handleSetAddedToFavorite =(payload) =>(  
+    {
+        type :actionType.setAddedToFavorites,
+        payload,
+    }
+)
+
+
+export {
+    pokemonsReducer, 
+    handleSetPokemons, 
+    handleSetPokemonsWithDetails,
+    handleSetLoading,
+    handleSetAddedToFavorite,
+}
 
 
 
