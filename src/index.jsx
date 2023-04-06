@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM  from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
-import { pokemonsReducer } from './utils/pokemonRedux';
 import { App } from '@containers/App';
 import "./styles/main.css";
 import { logger } from './middleware';
 import thunk from 'redux-thunk';
+import { rootReducer } from './utils/rootRedux';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,7 +17,7 @@ const composedEnhancers = composeAlt(
 )
     
 /*  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), */
-const store = createStore(pokemonsReducer, composedEnhancers);
+const store = createStore(rootReducer, composedEnhancers);
 
 root.render(
     <>

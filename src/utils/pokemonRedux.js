@@ -1,15 +1,13 @@
-import { getPokemonDetails } from "./pokemonApi";
+import { getPokemonDetails } from "@utils/pokemonApi";
+import { handleSetLoading } from "@utils/uiRedux";
 
 //Estado inicial
 const initialState = {
     pokemons : [],
-    loading: true,
-    addedToFavorites: [],
 }
 //Tipos de acciones
 const actionType = {
     setPokemons : "Set Pokemons",
-    setLoading: "Stop loading",
     setAddedToFavorites: "Add to favorites"
 }
 //Objeto reductor
@@ -17,10 +15,6 @@ const objectReducer = (state, payload) => ({
     [actionType.setPokemons] : {
         ...state,
         pokemons: payload,
-    },
-    [actionType.setLoading] : {
-        ...state,
-        loading: payload,
     },
     [actionType.setAddedToFavorites] : {
         ...state,
@@ -48,14 +42,6 @@ const handleSetPokemonsWithDetails = (pokemons = []) => (dispatch) => {
         dispatch(handleSetPokemons(rest));  
     });   
 }
-
-const handleSetLoading = (payload) => ( 
-    {
-        type :actionType.setLoading,
-        payload,
-    }
-)
-
 const handleSetAddedToFavorite =(payload) =>(  
     {
         type :actionType.setAddedToFavorites,
@@ -63,12 +49,10 @@ const handleSetAddedToFavorite =(payload) =>(
     }
 )
 
-
 export {
     pokemonsReducer, 
     handleSetPokemons, 
     handleSetPokemonsWithDetails,
-    handleSetLoading,
     handleSetAddedToFavorite,
 }
 

@@ -12,9 +12,15 @@ import { getPokemonDetails } from '@utils/pokemonApi'; */
 
 function App() {
 
-    const pokemons = useSelector(state => state.pokemons);
-    const loading = useSelector(state => state.loading);
+    const pokemons = useSelector(state => state.data.pokemons);
+    const loading = useSelector(state => state.ui.loading);
     const dispatch = useDispatch()
+
+    const a = {
+        b: "1",
+    }
+    const b = {...a}
+    console.log("compa", b == a)
 
     useEffect(()=>{
         
