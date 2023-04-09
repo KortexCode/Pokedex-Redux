@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    background-color: rgba(207, 27, 27, 0.836);   
+   
+}
+
+

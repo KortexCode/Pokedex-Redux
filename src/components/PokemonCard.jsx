@@ -3,35 +3,27 @@ import { FavoriteIcon } from './FavoriteIcon';
 
 function PokemonCard({pokemon}) {
 
-
+    console.log("el poke",pokemon.types[0].type.name)
 
     return (
-        <div className='border border-slate-300 flex flex-col w-[180px]'>
-            <div className='w-full border-b border-slate-300 flex justify-between' >
-                <p className='ps-3 text-center'>{pokemon.name}</p>
+        <div className=' shadow-pokeShadow flex flex-col w-[180px] 
+            bg-white'
+        >
+            <div className='w-full flex justify-between
+                bg-red-800' 
+            >
+                <p className='ps-3 text-lg font-extrabold text-center text-red-300'>
+                    {pokemon.name}
+                </p>
                 <FavoriteIcon pokemon={pokemon} />
             </div>
             <img src={pokemon.sprites.front_default} alt={pokemon.name}
-                className='w-full border-b border-slate-300'    
+                className='bg-red-400'    
             />
-            <div>
-                <p className='text-center'>Description</p>
-                <ul>
-                    <li>
-                        Type:
-                        <ul>
-                            <li>{pokemon.types[0].type.name}</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Abilitys:
-                        <ul>
-                            {pokemon.abilities.map((item)=> 
-                                (<li key={item.ability.name} >{item.ability.name}</li>))
-                            }
-                        </ul>
-                    </li>      
-                </ul>
+            <div className='bg-red-800'>
+                <p className='ps-2 py-2 text-base font-bold text-red-200 '>
+                    {pokemon.types.map((item)=> item.type.name).join(", ")}
+                </p>      
             </div>
         </div>
     )

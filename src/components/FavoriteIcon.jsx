@@ -14,7 +14,7 @@ function FavoriteIcon({pokemon}){
 
     return(
         <button className='pe-2' onClick={handleAddToFavorite}>
-           <Icon/>
+           <Icon size={20} color='yellow'/>
         </button>
     )
 }
