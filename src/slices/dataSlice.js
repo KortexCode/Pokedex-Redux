@@ -1,9 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getPokemonDetails } from "@utils/pokemonApi";
+import { consultApiData } from '@utils/pokemonApi';
+import { handleSetLoading } from "@slices/uiSlice";
 
 const initialState = {
     pokemons : [],
+    loading: true,
 }
 
+//Consulta a la Api con createAsyncThunk
+const fetchPokemonsWidthDetails = createAsyncThunk(
+    'data/fetchPokemonsWidthDetails',
+    async (_, {dispatch} ) => {
+        const axiosRest = consultApiData(); 
+
+        axiosRest.then(result => {
+            const pokemonUrl = result.data.results;
+         
+            //Debemos extraer la lista de urls de cada pokemon
+            Promise.all(pokemonUrl.map((item)=> {
+                return getPokemonDetails(item.url)
+            }))
+            .then(rest => {
+                dispatch(handleSetPokemons(rest));  
+                dispatch(handleSetLoading(false));
+            });   
+        })
+        .catch(e => console.log(e))     
+    }
+);
+//Se crea un slice con redux toolkit
 const dataSlice = createSlice(
     {
         name: "data",
@@ -21,18 +47,12 @@ const dataSlice = createSlice(
                     state.pokemons[pokemonIndex].favorite = !propFavorite;
                 }
             },
-            /* handleSetPokemonsWithDetails: (state, action) => {
-
-            } */
         },
     }
 );
 
 const {handleSetPokemons, handleSetAddedToFavorite} = dataSlice.actions;
-const sliceReducer = dataSlice.reducer;
+const dataReducer = dataSlice.reducer;
 
-export {sliceReducer, handleSetPokemons, handleSetAddedToFavorite}
+export {dataReducer, handleSetPokemons, handleSetAddedToFavorite, fetchPokemonsWidthDetails}
 
-
-
-console.log("dataslcice", dataSlice)
