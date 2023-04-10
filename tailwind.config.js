@@ -6,6 +6,9 @@ module.exports = {
       boxShadow: {
         'pokeShadow': '3px 4px 5px rgba(0, 0, 0, 0.9)',
         'pokeShadowRed': '3px 4px 5px rgba(245, 25, 0, 1)',
+      },
+      colors: {
+        'detail-bg': 'rgb(var(--detail-bg) / <alpha-value>)',
       }
     },
   },

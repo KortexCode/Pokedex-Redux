@@ -15,8 +15,13 @@ import { getPokemonDetails } from '@utils/pokemonApi'; */
 function App() {
     //Hook donde se filtran los datos según la búsqueda actual
     const {filteredPokemons} = useFilteredData();
+    const pokemonDetail = useSelector(state => state.data.pokemonDetail);
+    const openDetail = useSelector(state => state.data.openDetail);
     const loading = useSelector(state => state.ui.loading);
     const dispatch = useDispatch();
+
+    console.log("en deTALLES", pokemonDetail)
+    console.log("abiero",openDetail)
 
     useEffect(()=>{
         dispatch(fetchPokemonsWidthDetails());     
@@ -29,6 +34,12 @@ function App() {
             {!loading && <CardsContainer>
                 {filteredPokemons.map((pokemon)=><PokemonCard key={pokemon.name} pokemon={pokemon} />)}
             </CardsContainer>}
+            {openDetail && 
+                <div className='w-full h-full fixed top-0 bg-detail-bg blur-sm'>
+
+                </div>
+            }
+
         </>
     )
 }

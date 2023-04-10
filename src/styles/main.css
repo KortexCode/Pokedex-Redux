@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+      /* For rgba(0, 0, 0, 0.288 / <alpha-value>) */
+      --detail-bg: 0 0 0 0.8;
+    }
+  }
+
 html {
     height: 100%;
 }

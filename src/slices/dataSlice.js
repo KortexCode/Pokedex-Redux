@@ -6,6 +6,8 @@ import { handleSetLoading } from "@slices/uiSlice";
 const initialState = {
     pokemons : [],
     searchText: "",
+    pokemonDetail: {},
+    openDetail: false,
 }
 
 //Consulta a la Api con createAsyncThunk
@@ -49,7 +51,12 @@ const dataSlice = createSlice(
             },
             handleSetSearch: (state, action) => {
                state.searchText = action.payload; 
-            }
+            },
+            handleSetOpenDetailView: (state, action) => {
+               state.openDetail = !state.openDetail;
+               state.pokemonDetail = action.payload;
+            },
+
         },
     }
 );
@@ -58,7 +65,8 @@ const dataSlice = createSlice(
 const {
     handleSetPokemons,
     handleSetAddedToFavorite,
-    handleSetSearch
+    handleSetSearch,
+    handleSetOpenDetailView
 } = dataSlice.actions;
 //Obteniedo el reducer
 const dataReducer = dataSlice.reducer;
@@ -69,5 +77,6 @@ export {
     handleSetAddedToFavorite, 
     fetchPokemonsWidthDetails,
     handleSetSearch,
+    handleSetOpenDetailView,
 }
 
