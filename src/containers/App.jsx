@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Search } from '@components/Search';
 import { CardsContainer } from '@components/CardsContainer';
@@ -7,32 +7,27 @@ import { Loading } from '@components/Loading';
 /* import { consultApiData } from '@utils/pokemonApi';
 import { handleSetPokemonsWithDetails } from '@utils/pokemonRedux'; */
 import { fetchPokemonsWidthDetails } from '../slices/dataSlice';
+import { useFilteredData } from '../hooks/useFilteredData';
 /* import { handleSetPokemons } from '@utils/pokemonRedux';
 import { getPokemonDetails } from '@utils/pokemonApi'; */
 
 
 function App() {
-
-    const pokemons = useSelector(state => state.data.pokemons);
+    //Hook donde se filtran los datos según la búsqueda actual
+    const {filteredPokemons} = useFilteredData();
     const loading = useSelector(state => state.ui.loading);
     const dispatch = useDispatch();
 
     useEffect(()=>{
-       /*  const axiosRest = consultApiData();
-        axiosRest.then(result => {
-            dispatch(handleSetPokemonsWithDetails(result.data.results));
-        })
-        .catch(e => console.log(e)) */
-        dispatch(fetchPokemonsWidthDetails());
-        
+        dispatch(fetchPokemonsWidthDetails());     
     },[]);
 
     return (
         <>
-            <Search/>   
+            <Search filteredPokemons={filteredPokemons} />   
             {loading && <Loading/>}     
             {!loading && <CardsContainer>
-                {pokemons.map((pokemon)=><PokemonCard key={pokemon.name} pokemon={pokemon} />)}
+                {filteredPokemons.map((pokemon)=><PokemonCard key={pokemon.name} pokemon={pokemon} />)}
             </CardsContainer>}
         </>
     )

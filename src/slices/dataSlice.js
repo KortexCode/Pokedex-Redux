@@ -5,7 +5,7 @@ import { handleSetLoading } from "@slices/uiSlice";
 
 const initialState = {
     pokemons : [],
-    loading: true,
+    searchText: "",
 }
 
 //Consulta a la Api con createAsyncThunk
@@ -47,12 +47,27 @@ const dataSlice = createSlice(
                     state.pokemons[pokemonIndex].favorite = !propFavorite;
                 }
             },
+            handleSetSearch: (state, action) => {
+               state.searchText = action.payload; 
+            }
         },
     }
 );
 
-const {handleSetPokemons, handleSetAddedToFavorite} = dataSlice.actions;
+//Desestructurando las acciones
+const {
+    handleSetPokemons,
+    handleSetAddedToFavorite,
+    handleSetSearch
+} = dataSlice.actions;
+//Obteniedo el reducer
 const dataReducer = dataSlice.reducer;
 
-export {dataReducer, handleSetPokemons, handleSetAddedToFavorite, fetchPokemonsWidthDetails}
+export {
+    dataReducer, 
+    handleSetPokemons, 
+    handleSetAddedToFavorite, 
+    fetchPokemonsWidthDetails,
+    handleSetSearch,
+}
 

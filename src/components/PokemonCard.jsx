@@ -3,10 +3,8 @@ import { FavoriteIcon } from './FavoriteIcon';
 
 function PokemonCard({pokemon}) {
 
-    console.log("el poke",pokemon.types[0].type.name)
-
     return (
-        <div className=' shadow-pokeShadow flex flex-col w-[180px] 
+        <div className='shadow-pokeShadow flex flex-col w-[180px] 
             bg-white'
         >
             <div className='w-full flex justify-between
