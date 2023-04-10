@@ -8,6 +8,7 @@ import { Loading } from '@components/Loading';
 import { handleSetPokemonsWithDetails } from '@utils/pokemonRedux'; */
 import { fetchPokemonsWidthDetails } from '../slices/dataSlice';
 import { useFilteredData } from '../hooks/useFilteredData';
+import { PokemonCardDetail } from '../components/PokemonCardDetail';
 /* import { handleSetPokemons } from '@utils/pokemonRedux';
 import { getPokemonDetails } from '@utils/pokemonApi'; */
 
@@ -35,9 +36,10 @@ function App() {
                 {filteredPokemons.map((pokemon)=><PokemonCard key={pokemon.name} pokemon={pokemon} />)}
             </CardsContainer>}
             {openDetail && 
-                <div className='w-full h-full fixed top-0 bg-detail-bg blur-sm'>
-
-                </div>
+                <div className='w-full h-full flex items-center
+                 justify-center fixed top-0 z-10 bg-detailShadow'>
+                    <PokemonCardDetail/>
+                </div>      
             }
 
         </>

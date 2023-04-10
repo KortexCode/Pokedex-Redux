@@ -41,6 +41,12 @@ const dataSlice = createSlice(
                 state.pokemons = action.payload;
             },
             handleSetAddedToFavorite: (state, action) => {
+                //Verificar si existe un pokemon en vista de detalles
+                if(state.pokemonDetail){
+                    //Sincronizar variable favorita
+                    state.pokemonDetail.favorite = !state.pokemonDetail.favorite
+                }
+                //Cambiar estado favorito de la carta de pokemon elejida
                 const pokemonIndex= state.pokemons.findIndex((item)=>{
                      return item.id == action.payload.id;
                 })
@@ -53,8 +59,11 @@ const dataSlice = createSlice(
                state.searchText = action.payload; 
             },
             handleSetOpenDetailView: (state, action) => {
-               state.openDetail = !state.openDetail;
-               state.pokemonDetail = action.payload;
+                state.pokemonDetail = action.payload;
+                state.openDetail = !state.openDetail;
+            },
+            handleSetCloseDetailView: (state, action) => {
+               state.openDetail = action.payload;
             },
 
         },
@@ -66,7 +75,8 @@ const {
     handleSetPokemons,
     handleSetAddedToFavorite,
     handleSetSearch,
-    handleSetOpenDetailView
+    handleSetOpenDetailView,
+    handleSetCloseDetailView,
 } = dataSlice.actions;
 //Obteniedo el reducer
 const dataReducer = dataSlice.reducer;
@@ -78,5 +88,6 @@ export {
     fetchPokemonsWidthDetails,
     handleSetSearch,
     handleSetOpenDetailView,
+    handleSetCloseDetailView,
 }
 
