@@ -4,8 +4,8 @@ const axiosApi = axios.create({
     baseURL: "https://pokeapi.co/api/v2/",
 })
 
-function consultApiData(){
-    return axiosApi("pokemon?limit=151");
+function consultApiData(apiUrl){
+    return axiosApi(apiUrl);
 }
 
 function getPokemonDetails(url){

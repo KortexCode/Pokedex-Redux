@@ -14,8 +14,8 @@ const initialState = {
 //Consulta a la Api con createAsyncThunk
 const fetchPokemonsWidthDetails = createAsyncThunk(
     'data/fetchPokemonsWidthDetails',
-    async (_, {dispatch} ) => {
-        const axiosRest = consultApiData(); 
+    async (endPoint, {dispatch} ) => {
+        const axiosRest = consultApiData(endPoint); 
 
         axiosRest.then(result => {
             const pokemonUrl = result.data.results;

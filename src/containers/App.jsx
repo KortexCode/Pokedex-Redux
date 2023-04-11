@@ -8,7 +8,8 @@ import { Loading } from '@components/Loading';
 import { handleSetPokemonsWithDetails } from '@utils/pokemonRedux'; */
 import { fetchPokemonsWidthDetails } from '../slices/dataSlice';
 import { useFilteredData } from '../hooks/useFilteredData';
-import { PokemonCardDetail } from '../components/PokemonCardDetail';
+import { PokemonCardDetail } from '@components/PokemonCardDetail';
+import { Navigation } from '@components/Navigation';
 /* import { handleSetPokemons } from '@utils/pokemonRedux';
 import { getPokemonDetails } from '@utils/pokemonApi'; */
 
@@ -25,11 +26,12 @@ function App() {
     console.log("abiero",openDetail)
 
     useEffect(()=>{
-        dispatch(fetchPokemonsWidthDetails());     
+        dispatch(fetchPokemonsWidthDetails("pokemon?limit=151"));     
     },[]);
 
     return (
         <>
+            <Navigation/>
             <Search filteredPokemons={filteredPokemons} />   
             {loading && <Loading/>}     
             {!loading && <CardsContainer>

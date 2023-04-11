@@ -19,7 +19,7 @@ function Search({filteredPokemons}) {
 
     return (
         <>
-            <div className='w-[300px] mx-auto my-4 h-auto
+            <div className='w-[300px] mx-auto mt-16 mb-4 h-auto
                 border-[3px] border-red-800 rounded-lg  shadow-md shadow-rose-950 flex 
                 justify-between items-center bg-white'
             >

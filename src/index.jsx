@@ -21,7 +21,7 @@ const store = createStore(rootReducer, composedEnhancers);
 
 root.render(
     <>
-        <p className='text-lg'>Pokemons!!, atrápalos yaaa!</p>
+        {/* <p className='text-lg'>Pokemons!!, atrápalos yaaa!</p> */}
         <Provider store={store} >
             <App/>
         </Provider>
