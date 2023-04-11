@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPokemonDetails } from "@utils/pokemonApi";
 import { consultApiData } from '@utils/pokemonApi';
 import { handleSetLoading } from "@slices/uiSlice";
-import { getPokemonLocation } from "../utils/pokemonApi";
 
 const initialState = {
     pokemons : [],
@@ -32,16 +31,6 @@ const fetchPokemonsWidthDetails = createAsyncThunk(
         .catch(e => console.log(e))     
     }
 );
-/* const fetchPokemonsLocation = createAsyncThunk(
-    'data/fetchPokemonsLocation',
-    async (_, {dispatch} ) => {
-        
-        getPokemonLocation().then(rest => {
-
-        })  
-        .catch(e => console.log(e))     
-    }
-); */
 //Se crea un slice con redux toolkit
 const dataSlice = createSlice(
     {

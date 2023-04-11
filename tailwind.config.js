@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         'detailShadow': 'rgba(0, 0, 0, 0.288)',
+        'navBg': 'rgba(127, 29, 29, 1)'
       },
       boxShadow: {
         'pokeShadow': '3px 4px 5px rgba(0, 0, 0, 0.9)',
@@ -13,7 +14,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Simple 16 column grid
-        'pokeNav': 'repeat(2, minmax(0, auto))',
+        'pokeNav': '1fr 1fr',
       }
     },
   },

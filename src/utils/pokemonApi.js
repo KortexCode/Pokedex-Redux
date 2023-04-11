@@ -12,10 +12,6 @@ function getPokemonDetails(url){
     const axioRest = axios.get(url).then(rest => rest.data);
     return axioRest;
 }
-/* function getPokemonLocation(url){
-    const axioRest = axios.get(url).then(rest => rest.data);
-    return axioRest;
-} */
 
 export {consultApiData, getPokemonDetails}
 
