@@ -35,18 +35,28 @@ function PokemonCardDetail() {
                     className='w-48 bg-red-400 object-cover'  
                 />
             </div>
-            <div className='h-auto rounded-b-lg bg-red-800'>
+            <div className='h-auto p-2 rounded-b-lg bg-red-800 divide-y
+                divide-rose-300'
+            >
                 <ul className=' list-disc list-inside'>
-                    <p className='ps-2'>Type:</p>
-                    <li className='ps-4'>
+                    <p className='ps-2 text-lg font-bold'>Type:</p>
+                    <li className='ps-4 pb-2 text-red-200 font-medium'>
                         {pokemon.types.map((item)=> item.type.name).join(", ")}
                     </li>
                 </ul>
                 <ul className=' list-disc list-inside'>
-                    <p className='ps-2'>Abilities:</p>
-                    <li className='ps-4'>
+                    <p className='ps-2 pt-2 text-lg font-bold'>Abilities:</p>
+                    <li className='ps-4 pb-2 text-red-200 font-medium'>
                         {pokemon.abilities.map((item)=> item.ability.name).join(", ")}
                     </li>
+                </ul>
+                <ul className=' list-disc list-inside'>
+                    <p className='ps-2 pt-2 text-lg font-bold'>Stats</p>
+                    {pokemon.stats.map((item)=> 
+                        <li key={item.stat.name} className='ps-4 text-red-200'>
+                            <p className='inline-block font-medium'>{item.stat.name}:</p> 
+                            <span className='ms-1 text-red-300'>{item.base_stat}</span>
+                        </li>)}
                 </ul>
                 {/* <p className='ps-2 py-2 text-base font-bold text-red-200 '>
                     {pokemon.types.map((item)=> item.type.name).join(", ")}
