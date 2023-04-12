@@ -24,8 +24,8 @@ function PokeGirlImg() {
     :  chloe; 
 
     return(
-        <img className='w-[100px] h-[90px] mt-0 mx-auto absolute top-[10px]
-            right-0 left-[450px]' 
+        <img className='w-[100px] h-[140px] mt-0 mx-auto absolute top-[120px]
+            right-0 left-[460px] object-contain hidden sm:block' 
         src={pokeGirl} alt="Pokegirl"/>
     )
 

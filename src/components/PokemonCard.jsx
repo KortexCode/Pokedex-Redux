@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FavoriteIcon } from './FavoriteIcon';
 import { useDispatch } from 'react-redux';
-import { handleSetOpenDetailView } from '../slices/dataSlice';
+import { handleSetOpenDetailView } from '@slices/dataSlice';
+import { useObserver } from '@hooks/useObserver';
 
 function PokemonCard({pokemon}) {
+    const observer = useObserver(pokemon);
     const dispatch = useDispatch();
 
     const handleOnClick = () => { 
         dispatch(handleSetOpenDetailView(pokemon));
     }
+
+    useEffect(()=>{
+        const pokemonSprite = document.getElementById(pokemon.name)
+        observer.observe(pokemonSprite)
+    },[pokemon])
 
     return (
         <div className='shadow-pokeShadow flex flex-col w-[180px]'>
@@ -22,7 +29,7 @@ function PokemonCard({pokemon}) {
                 </p>
                 <FavoriteIcon pokemon={pokemon} />
             </div>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name}
+            <img id={pokemon.name} src="" alt={pokemon.name}
                 className='bg-red-400' onClick={handleOnClick}  
             />
             <div className='bg-red-800'>

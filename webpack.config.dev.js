@@ -22,6 +22,7 @@ module.exports = {
             "@utils": path.resolve(__dirname, "src/utils"),
             "@images": path.resolve(__dirname, "src/assets"),
             "@slices": path.resolve(__dirname, "src/slices"),
+            "@hooks": path.resolve(__dirname, "src/hooks"),
         }
     },
     module: {
