@@ -9,6 +9,7 @@ import { useFilteredData } from '../hooks/useFilteredData';
 import { PokemonCardDetail } from '@components/PokemonCardDetail';
 import { Navigation } from '@components/Navigation';
 import { PokeGirlImg } from '@components/PokeGirlImg';
+import { AddedTofavoritesMenu } from '@components/AddedToFavoritesMenu';
 import logo from '@images/logo.png'
 
 function App() {
@@ -23,10 +24,13 @@ function App() {
         dispatch(fetchPokemonsWidthDetails("pokemon?limit=151"));     
     },[]);
 
+
+
     return (
         <>
             <Navigation/>
             <main>
+                <AddedTofavoritesMenu/>
                 <PokeGirlImg/>
                 <div className='w-full mt-20 sm:flex justify-center items-center hidden'>
                     <h1 className='me-2 text-4xl font-bold text-red-200'>

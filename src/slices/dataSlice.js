@@ -8,6 +8,7 @@ const initialState = {
     searchText: "",
     pokemonDetail: {},
     openDetail: false,
+    addedToFavorites: [],
 }
 
 //Consulta a la Api con createAsyncThunk
@@ -51,8 +52,16 @@ const dataSlice = createSlice(
                      return item.id == action.payload.id;
                 })
                 if(pokemonIndex >= 0){
-                    const propFavorite = state.pokemons[pokemonIndex].favorite;   
+                    const propFavorite = state.pokemons[pokemonIndex].favorite;
                     state.pokemons[pokemonIndex].favorite = !propFavorite;
+                    //Agregamos o eliminamos de la lista si el pokemon tiene falso o verdadero
+                    //su propiedad favoritos
+                    if(state.pokemons[pokemonIndex].favorite){
+                        state.addedToFavorites.push(state.pokemons[pokemonIndex]);
+                    }else{
+                        state.addedToFavorites.splice(pokemonIndex, 1);
+                    }
+                    
                 }
             },
             handleSetSearch: (state, action) => {

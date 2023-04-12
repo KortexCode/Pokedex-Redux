@@ -27,14 +27,14 @@ function Navigation(){
     }
 
     return(
-        <header className='w-full h-auto shadow-pokeShadowNav
-            fixed top-0 bg-navBg'
+        <header className='w-full h-[59px] flex items-center shadow-pokeShadowNav
+            fixed top-0 bg-navBg z-10'
         >
             <nav className='w-full h-[auto] py-3 grid'>
                 {openMobileMenu && 
                     <ul id="menu-mobile" className='w-[150px] p-4 border-l-0 border-2 border-red-200 fixed top-[58px] 
                         bg-navBg rounded-e-md list-disc list-inside divide-y
-                        divide-rose-300 sm:hidden'
+                        divide-rose-300 sm:hidden z-10'
                     >
                         <p className='mb-2 text-xl font-bold text-red-200'>
                             Regions
