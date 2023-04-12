@@ -11,13 +11,13 @@ function PokemonCard({pokemon}) {
     }
 
     return (
-        <div className='shadow-pokeShadow flex flex-col w-[180px] 
-            bg-white'
-        >
+        <div className='shadow-pokeShadow flex flex-col w-[180px]'>
             <div className='w-full flex justify-between
                 bg-red-800' 
             >
-                <p className='ps-3 text-lg font-extrabold text-center text-red-300'>
+                <p className='ps-3 text-lg font-extrabold text-center text-red-300
+                    capitalize'
+                >
                     {pokemon.name}
                 </p>
                 <FavoriteIcon pokemon={pokemon} />

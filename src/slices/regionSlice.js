@@ -42,7 +42,9 @@ const initialState = {
             urlLocation: "pokemon?limit=89&offset=809",
             actived: false,
         }
-    ]
+    ],
+    openMobileMenu: false,
+    currentRegion: "Kanto",
 }
 
 //Se crea un slice con redux toolkit
@@ -60,6 +62,12 @@ const regionSlice = createSlice(
 
                 state.regionsList[action.payload].actived = newState;
             },
+            handleSetOpenMenuMobile: (state, action) => {
+                state.openMobileMenu = !state.openMobileMenu
+            },
+            handleSetCurrentRegion: (state, action) => {
+                state.currentRegion = action.payload;
+            }
         },
     }
 );
@@ -67,6 +75,8 @@ const regionSlice = createSlice(
 //Desestructurando las acciones
 const {
     handleSetRegions,
+    handleSetOpenMenuMobile,
+    handleSetCurrentRegion,
 } = regionSlice.actions;
 //Obteniedo el reducer
 const regionReducer = regionSlice.reducer;
@@ -74,4 +84,6 @@ const regionReducer = regionSlice.reducer;
 export {
     regionReducer, 
     handleSetRegions, 
+    handleSetOpenMenuMobile,
+    handleSetCurrentRegion,
 }
