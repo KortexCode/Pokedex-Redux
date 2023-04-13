@@ -16,6 +16,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename:"[name].[contenthash].js", //nombre del archivo optimizado(el index.js)
         publicPath:"./",//de manera manual esta es el "src" del js y css dentro del index.html
+        assetModuleFilename:'assets/images/[hash][ext]',
     },
     mode:"production",
     devtool:"source-map",
@@ -25,6 +26,10 @@ module.exports = {
             "@components": path.resolve(__dirname, "src/components"),
             "@styles": path.resolve(__dirname, "src/styles"),
             "@containers": path.resolve(__dirname, "src/containers"),
+            "@utils": path.resolve(__dirname, "src/utils"),
+            "@images": path.resolve(__dirname, "src/assets"),
+            "@slices": path.resolve(__dirname, "src/slices"),
+            "@hooks": path.resolve(__dirname, "src/hooks"),
         }
     },
     module: {
@@ -44,7 +49,7 @@ module.exports = {
             },
             {
                 test:/\.(css|scss)$/,
-                use: [ MiniCssExtractPlugin.loader, "css-loader" ],  
+                use: [ MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],  
             },
             {
                 test:/\.(png|svg|jpg|gif)$/,

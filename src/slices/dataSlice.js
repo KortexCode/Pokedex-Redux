@@ -61,7 +61,6 @@ const dataSlice = createSlice(
                 }        
             },
             handleSetAddedToFavorite: (state, action) => {
-                console.log("mandado", action.payload)
                 //Verificar si existe un pokemon en vista de detalles
                 if(state.pokemonDetail){
                     //Sincronizar variable favorita
