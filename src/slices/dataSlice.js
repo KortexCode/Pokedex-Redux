@@ -40,37 +40,62 @@ const dataSlice = createSlice(
         initialState,
         reducers: {
             handleSetPokemons: (state, action) => {
-                state.pokemons = action.payload;
+                //Si hay datos en la vista de favoritos, los datos se cargan 
+                //actualizando la propiedad favorites donde se cumpla la condición
+                if(state.addedToFavorites.length){
+                    let pokeList = [];
+                    action.payload.forEach((pokemon)=>{
+                        state.addedToFavorites.forEach((addeds)=>{
+                            if(pokemon.id == addeds.id){
+                                pokemon.favorite = addeds.favorite;
+                            }
+                        });
+                        pokeList.push(pokemon);
+                    });
+                    state.pokemons = pokeList; //Carga de datos
+                }
+                //Si no hay datos en la vista favoritos, la carga de datos
+                //se hace normal
+                else{
+                    state.pokemons = action.payload; //Carga de datos
+                }        
             },
             handleSetAddedToFavorite: (state, action) => {
-                console.log("added", action.payload)
+                console.log("mandado", action.payload)
                 //Verificar si existe un pokemon en vista de detalles
                 if(state.pokemonDetail){
                     //Sincronizar variable favorita
-                    state.pokemonDetail.favorite = !state.pokemonDetail.favorite
+                    state.pokemonDetail.favorite = !state.pokemonDetail.favorite;
                 }
                 //Cambiar estado favorito de la carta de pokemon elejida
-                const pokemonIndex= state.pokemons.findIndex((item)=>{
-                     return item.id == action.payload.id;
-                })
+                const pokemonIndex = state.pokemons.findIndex((item)=>{
+                    return item.id == action.payload.id;
+                });
+                //Este proceso sólo se ejecuta si se agrega o elimina algo que esté
+                //Presente en la vista actual
                 if(pokemonIndex >= 0){
                     const propFavorite = state.pokemons[pokemonIndex].favorite;
-                    console.log("en que estado", propFavorite)
                     state.pokemons[pokemonIndex].favorite = !propFavorite;
                     //Agregamos o eliminamos de la lista si el pokemon tiene falso o verdadero
-                    //su propiedad favoritos
-                   
+                    //su propiedad favoritos  
                     if(!propFavorite){
-                        console.log("entró a meter")
                         state.addedToFavorites.push(state.pokemons[pokemonIndex]);
                     }else{
                         state.addedToFavorites.forEach((addeds, index)=>{
-                            if(addeds.id == state.pokemons[pokemonIndex].id){
+                            if(addeds.id == action.payload.id){
                                 state.addedToFavorites.splice(index, 1);
                             }
                         });   
-                    }
-                    
+                    }              
+                }
+                //Si no se encuentra el pokemon que el botón de favoritos está enviando
+                //En la vista actual, entonces la eliminación se hará desde aquí
+                else{
+                    state.addedToFavorites.forEach((addeds, index)=>{
+                        if(addeds.id == action.payload.id){
+                            state.addedToFavorites.splice(index, 1);
+                        }
+                    });   
                 }
             },
             handleSetSearch: (state, action) => {
@@ -82,6 +107,7 @@ const dataSlice = createSlice(
             },
             handleSetCloseDetailView: (state, action) => {
                state.openDetailMenu = action.payload;
+               state.pokemonDetail = {}; //Limpiamos datos del pokemon en detalles
             },
             handleSetToggleFavoriteMenu: (state, action) => {
                 state.toggleFavoriteMenu = !state.toggleFavoriteMenu    

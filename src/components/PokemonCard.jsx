@@ -18,7 +18,7 @@ function PokemonCard({pokemon}) {
     },[pokemon])
 
     return (
-        <div className='w-[180px] shadow-pokeShadow grid grid-rows-pokeCard bg-red-800'>
+        <article className='w-[180px] shadow-pokeShadow grid grid-rows-pokeCard bg-red-800'>
             <div className='w-full flex justify-between items-center
                 bg-red-800' 
             >
@@ -37,7 +37,7 @@ function PokemonCard({pokemon}) {
                     {pokemon.types.map((item)=> item.type.name).join(", ")}
                 </p>      
             </div>
-        </div>
+        </article>
     )
 }
 
