@@ -7,8 +7,8 @@ import { useObserver } from '@hooks/useObserver';
 function PokemonCard({pokemon}) {
     const observer = useObserver(pokemon);
     const dispatch = useDispatch();
-
-    const handleOnClick = () => { 
+    
+    const handleOnOpenDetailView = () => { 
         dispatch(handleSetOpenDetailView(pokemon));
     }
 
@@ -18,8 +18,8 @@ function PokemonCard({pokemon}) {
     },[pokemon])
 
     return (
-        <div className='shadow-pokeShadow flex flex-col w-[180px]'>
-            <div className='w-full flex justify-between
+        <div className='w-[180px] shadow-pokeShadow grid grid-rows-pokeCard bg-red-800'>
+            <div className='w-full flex justify-between items-center
                 bg-red-800' 
             >
                 <p className='ps-3 text-lg font-extrabold text-center text-red-300
@@ -30,9 +30,9 @@ function PokemonCard({pokemon}) {
                 <FavoriteIcon pokemon={pokemon} />
             </div>
             <img id={pokemon.name} src="" alt={pokemon.name}
-                className='bg-red-400' onClick={handleOnClick}  
+                className='w-full h-[180px] bg-red-400' onClick={handleOnOpenDetailView}  
             />
-            <div className='bg-red-800'>
+            <div className='bg-red-800 self-end'>
                 <p className='ps-2 py-2 text-base font-bold text-red-200 '>
                     {pokemon.types.map((item)=> item.type.name).join(", ")}
                 </p>      

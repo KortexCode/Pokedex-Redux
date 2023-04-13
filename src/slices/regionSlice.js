@@ -63,7 +63,7 @@ const regionSlice = createSlice(
                 state.regionsList[action.payload].actived = newState;
             },
             handleSetOpenMenuMobile: (state, action) => {
-                state.openMobileMenu = !state.openMobileMenu
+                state.openMobileMenu = !state.openMobileMenu        
             },
             handleSetCurrentRegion: (state, action) => {
                 state.currentRegion = action.payload;

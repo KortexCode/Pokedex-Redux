@@ -1,15 +1,18 @@
 import React from 'react';
-import { HiBars4 } from "react-icons/hi2";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPokemonsWidthDetails } from '@slices/dataSlice';
 import { handleSetLoading } from '@slices/uiSlice';
 import { handleSetRegions } from '@slices/regionSlice';
 import { handleSetOpenMenuMobile } from '@slices/regionSlice';
-import logo from '@images/logo.png'
 import { handleSetCurrentRegion } from '@slices/regionSlice';
+import { handleSetToggleFavoriteMenu } from '@slices/dataSlice';
+import { HiBars4 } from "react-icons/hi2";
+import { HiStar, HiOutlineStar } from "react-icons/hi2";
+import logo from '@images/logo.png';
 
 function Navigation(){
     const regionList = useSelector(state => state.regions.regionsList);
+    const toggleFavoriteMenu = useSelector(state => state.data.toggleFavoriteMenu);
     const openMobileMenu = useSelector(state => state.regions.openMobileMenu);
     const dispatch = useDispatch();
 
@@ -22,10 +25,22 @@ function Navigation(){
             dispatch(handleSetCurrentRegion(regionList[index].name));
         }
     }
+    //Abrir o cerrar menú mobile
     const handleOnOpenMenuMobile = () => { 
         dispatch(handleSetOpenMenuMobile());
+           //Cerrar menú de favoritos si está abierto
+        if(toggleFavoriteMenu)
+            dispatch(handleSetToggleFavoriteMenu());
     }
-
+    //Abrir o cerrar mené de favoritos
+    const handleOnToggleFavoriteMenu = () => { 
+        dispatch(handleSetToggleFavoriteMenu());
+        //Cerrar menú mobile si está abierto
+        if(openMobileMenu){
+            dispatch(handleSetOpenMenuMobile());
+        }
+    }
+    console.log(openMobileMenu)
     return(
         <header className='w-full h-[59px] flex items-center shadow-pokeShadowNav
             fixed top-0 bg-navBg z-10'
@@ -57,25 +72,37 @@ function Navigation(){
                     >
                         <HiBars4 size={35}/>
                     </button>
-                    <div className='w-auto justify-self-end flex items-center'>
-                        <p className='pe-2 font-bold text-2xl text-red-200'>PokeRedux</p>
-                        <img className=' w-7 h-7 me-3 object-fit text-center' src={logo} alt="Logo" />
+                    <div className='w-auto justify-self-center flex items-center'>
+                        <h1 className='pe-2 font-bold text-2xl text-red-200'>PokeRedux</h1>
+                        <img className=' w-7 h-7 object-cover' src={logo} alt="Logo" />
                     </div>
+                    <button className='pe-3 justify-self-end text-yellow-400' 
+                           onClick={handleOnToggleFavoriteMenu}
+                    >
+                           <HiStar size={40}/>
+                    </button>
                 </div>
-                <ul id="nave-desktop" className='w-[90%] sm:flex justify-self-center items-center
-                    flex-wrap justify-center hidden '
-                >
-                    {regionList.map((item, index)=> 
-                        (   <li className={`me-4 font-bold text-lg ${item.actived && "text-yellow-300"}
-                                hover:text-yellow-300 cursor-pointer`} 
-                                onClick={()=> handleOnChaneRegion(item.urlLocation, index)}
-                                key={item.name}
-                            >
-                                {item.name}
-                            </li>
-                        ))
-                    }
-                </ul>
+                <div className='w-full sm:flex items-center justify-between hidden'>
+                    <button className='ps-3 justify-self-start text-yellow-400' 
+                           onClick={handleOnToggleFavoriteMenu}
+                    >
+                           <HiStar size={40}/>
+                    </button>
+                    <ul id="nave-desktop" className='w-[90%] flex justify-self-center items-center
+                        flex-wrap justify-center'
+                    >
+                        {regionList.map((item, index)=> 
+                            (   <li className={`me-4 font-bold text-lg ${item.actived && "text-yellow-300"}
+                                    hover:text-yellow-300 cursor-pointer`} 
+                                    onClick={()=> handleOnChaneRegion(item.urlLocation, index)}
+                                    key={item.name}
+                                >
+                                    {item.name}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </nav>
         </header>
     )

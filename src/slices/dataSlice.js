@@ -7,7 +7,8 @@ const initialState = {
     pokemons : [],
     searchText: "",
     pokemonDetail: {},
-    openDetail: false,
+    openDetailMenu: false,
+    toggleFavoriteMenu: false,
     addedToFavorites: [],
 }
 
@@ -42,6 +43,7 @@ const dataSlice = createSlice(
                 state.pokemons = action.payload;
             },
             handleSetAddedToFavorite: (state, action) => {
+                console.log("added", action.payload)
                 //Verificar si existe un pokemon en vista de detalles
                 if(state.pokemonDetail){
                     //Sincronizar variable favorita
@@ -53,13 +55,20 @@ const dataSlice = createSlice(
                 })
                 if(pokemonIndex >= 0){
                     const propFavorite = state.pokemons[pokemonIndex].favorite;
+                    console.log("en que estado", propFavorite)
                     state.pokemons[pokemonIndex].favorite = !propFavorite;
                     //Agregamos o eliminamos de la lista si el pokemon tiene falso o verdadero
                     //su propiedad favoritos
-                    if(state.pokemons[pokemonIndex].favorite){
+                   
+                    if(!propFavorite){
+                        console.log("entró a meter")
                         state.addedToFavorites.push(state.pokemons[pokemonIndex]);
                     }else{
-                        state.addedToFavorites.splice(pokemonIndex, 1);
+                        state.addedToFavorites.forEach((addeds, index)=>{
+                            if(addeds.id == state.pokemons[pokemonIndex].id){
+                                state.addedToFavorites.splice(index, 1);
+                            }
+                        });   
                     }
                     
                 }
@@ -69,12 +78,14 @@ const dataSlice = createSlice(
             },
             handleSetOpenDetailView: (state, action) => {
                 state.pokemonDetail = action.payload;
-                state.openDetail = !state.openDetail;
+                state.openDetailMenu = !state.openDetail;
             },
             handleSetCloseDetailView: (state, action) => {
-               state.openDetail = action.payload;
+               state.openDetailMenu = action.payload;
             },
-
+            handleSetToggleFavoriteMenu: (state, action) => {
+                state.toggleFavoriteMenu = !state.toggleFavoriteMenu    
+            },
         },
     }
 );
@@ -86,6 +97,7 @@ const {
     handleSetSearch,
     handleSetOpenDetailView,
     handleSetCloseDetailView,
+    handleSetToggleFavoriteMenu,
 } = dataSlice.actions;
 //Obteniedo el reducer
 const dataReducer = dataSlice.reducer;
@@ -98,5 +110,6 @@ export {
     handleSetSearch,
     handleSetOpenDetailView,
     handleSetCloseDetailView,
+    handleSetToggleFavoriteMenu,
 }
 

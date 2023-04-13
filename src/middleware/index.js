@@ -5,7 +5,7 @@
 //Action en la información que será enviada, allí encontramos un objeto con esos datos
 //que serán enviados al reducer.
 
-const logger = (store) => (next) => (action) => {
+/* const logger = (store) => (next) => (action) => {
     console.log(action);
     next(action);
 }
@@ -17,4 +17,4 @@ const newPokemon = (store) => (next) => (actionData) => {
 
 }
 
-export {logger, newPokemon}
+export {logger, newPokemon} */

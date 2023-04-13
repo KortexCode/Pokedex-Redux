@@ -6,17 +6,19 @@ import { handleSetCloseDetailView } from '../slices/dataSlice';
 
 
 function PokemonCardDetail() {
+    //Obtenemos el pokemon agregado a detalles
     const pokemon = useSelector(state  => state.data.pokemonDetail);
     const dispatch = useDispatch();
-
+    //Cerrar vista de detalles
     const handleOnCloseDetail = () => {  
         dispatch(handleSetCloseDetailView(false));
     }
-
+    //Esta vista consta de un fondo transparente y una carta centrar con 3 secciones
     return (
         <div className='w-80 rounded-t-lg rounded-b-lg shadow-pokeShadow
          flex flex-col bg-transparent'
         >
+            {/* título del pokemon */}
             <div className='w-full rounded-t-lg flex justify-between
                 bg-red-800' 
             >
@@ -27,16 +29,18 @@ function PokemonCardDetail() {
                 </p>
                 <FavoriteIcon pokemon={pokemon} />
             </div>
+            {/*  vista del sprite del pokemon */}
             <div className='w-full flex items-center justify-center 
                 relative bg-red-400'
             >
-                <button className='ms-1 mt-1 absolute top-0 left-0' onClick={handleOnCloseDetail}>
+                <button id="btn-close-detail" className='ms-1 mt-1 absolute top-0 left-0' onClick={handleOnCloseDetail}>
                     <HiOutlineXCircle size={34} color='pink'/>
                 </button>
                 <img src={pokemon.sprites.front_default} alt={pokemon.name}
                     className='w-48 bg-red-400 object-cover'  
                 />
             </div>
+           {/*  Vista del stats del pokemon */}
             <div className='h-auto p-2 rounded-b-lg bg-red-800 divide-y
                 divide-rose-300'
             >
@@ -60,9 +64,6 @@ function PokemonCardDetail() {
                             <span className='ms-1 text-red-300'>{item.base_stat}</span>
                         </li>)}
                 </ul>
-                {/* <p className='ps-2 py-2 text-base font-bold text-red-200 '>
-                    {pokemon.types.map((item)=> item.type.name).join(", ")}
-                </p>   */}    
             </div>
         </div>
     )

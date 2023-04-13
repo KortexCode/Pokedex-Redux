@@ -6,7 +6,6 @@ import { handleSetAddedToFavorite } from '../slices/dataSlice';
 function FavoriteIcon({pokemon}){
     const dispatch = useDispatch();
     const Icon = pokemon.favorite ? HiStar : HiOutlineStar;
-
     //Agregar o eliminar de favoritos
     const handleAddToFavorite = () => { 
         dispatch(handleSetAddedToFavorite(pokemon))

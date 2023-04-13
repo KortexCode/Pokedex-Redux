@@ -13,11 +13,13 @@ module.exports = {
         'pokeShadowRed': '3px 4px 5px rgba(245, 25, 0, 1)',
       },
       gridTemplateColumns: {
-        // Simple 16 column grid
-        'pokeNav': '1fr 1fr',
+        'pokeNav': 'auto 1fr auto',
+      },
+      gridTemplateRows: {
+        'pokeCard': '1fr, auto, 40px',
       }
     },
   },
   plugins: [],
 }
-
+/* repeat(1, minmax(auto, 200px)) */
