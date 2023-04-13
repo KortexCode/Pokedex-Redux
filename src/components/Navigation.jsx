@@ -7,7 +7,7 @@ import { handleSetOpenMenuMobile } from '@slices/regionSlice';
 import { handleSetCurrentRegion } from '@slices/regionSlice';
 import { handleSetToggleFavoriteMenu } from '@slices/dataSlice';
 import { HiBars4 } from "react-icons/hi2";
-import { HiStar, HiOutlineStar } from "react-icons/hi2";
+import { HiStar } from "react-icons/hi2";
 import logo from '@images/logo.png';
 
 function Navigation(){
@@ -40,7 +40,7 @@ function Navigation(){
             dispatch(handleSetOpenMenuMobile());
         }
     }
-    console.log(openMobileMenu)
+
     return(
         <header className='w-full h-[59px] flex items-center shadow-pokeShadowNav
             fixed top-0 bg-navBg z-10'
@@ -88,7 +88,7 @@ function Navigation(){
                     >
                            <HiStar size={40}/>
                     </button>
-                    <ul id="nave-desktop" className='w-[90%] flex justify-self-center items-center
+                    <ul id="nave-desktop" className='w-[90%] pe-4 flex justify-self-center items-center
                         flex-wrap justify-center'
                     >
                         {regionList.map((item, index)=> 

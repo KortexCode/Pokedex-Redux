@@ -61,7 +61,7 @@ module.exports = {
         new HtmlWebpackPlugin(
             {
                 filename:"index.html",
-                title: "Pokeredux",
+                title: "PokeRedux",
                 inject: true,
                 template: "./public/index.html"
             }
