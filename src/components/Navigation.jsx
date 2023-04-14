@@ -6,6 +6,7 @@ import { handleSetRegions } from '@slices/regionSlice';
 import { handleSetOpenMenuMobile } from '@slices/regionSlice';
 import { handleSetCurrentRegion } from '@slices/regionSlice';
 import { handleSetToggleFavoriteMenu } from '@slices/dataSlice';
+import { PokemonAppTitule } from '@components/PokemonAppTitule';
 import { HiBars4 } from "react-icons/hi2";
 import { HiStar } from "react-icons/hi2";
 import logo from '@images/logo.png';
@@ -45,7 +46,7 @@ function Navigation(){
         <header className='w-full h-[59px] flex items-center shadow-pokeShadowNav
             fixed top-0 bg-navBg z-10'
         >
-            <nav className='w-full h-[auto] py-3 grid'>
+            <nav className='w-full h-[auto] py-3'>
                 {openMobileMenu && 
                     <ul id="menu-mobile" className='w-[150px] p-4 border-l-0 border-2 border-red-200 fixed top-[58px] 
                         bg-navBg rounded-e-md list-disc list-inside divide-y
@@ -82,13 +83,15 @@ function Navigation(){
                            <HiStar size={40}/>
                     </button>
                 </div>
-                <div className='w-full sm:flex items-center justify-between hidden'>
+                <div id="nave-desktop" className='w-full sm:grid grid-cols-pokeNavDesktop
+                    justify-items-center hidden'
+                >
                     <button className='ps-3 justify-self-start text-yellow-400' 
                            onClick={handleOnToggleFavoriteMenu}
                     >
                            <HiStar size={40}/>
                     </button>
-                    <ul id="nave-desktop" className='w-[90%] pe-4 flex justify-self-center items-center
+                    <ul className='w-[auto] ms-16 flex items-center justify-self-start
                         flex-wrap justify-center'
                     >
                         {regionList.map((item, index)=> 
@@ -102,6 +105,7 @@ function Navigation(){
                             ))
                         }
                     </ul>
+                    <PokemonAppTitule/>
                 </div>
             </nav>
         </header>

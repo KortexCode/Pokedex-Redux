@@ -14,6 +14,8 @@ module.exports = {
       },
       gridTemplateColumns: {
         'pokeNav': 'auto 1fr auto',
+        'pokeNavDesktop': 'auto 1fr auto',
+
       },
       gridTemplateRows: {
         'pokeCard': '1fr, auto, 40px',

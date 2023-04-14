@@ -10,8 +10,6 @@ import { PokemonCardDetail } from '@components/PokemonCardDetail';
 import { Navigation } from '@components/Navigation';
 import { PokeGirlImg } from '@components/PokeGirlImg';
 import { AddedTofavoritesMenu } from '@components/AddedToFavoritesMenu';
-import { PokemonAppTitule } from '@components/PokemonAppTitule';
-
 
 function App() {
     //Hook donde se filtran los datos según la búsqueda actual
@@ -34,7 +32,6 @@ function App() {
             <main>
                 {toggleFavoriteMenu && <AddedTofavoritesMenu/>}
                 <PokeGirlImg/>
-                <PokemonAppTitule/>
                 <Search filteredPokemons={filteredPokemons} />   
                 {loading && <Loading/>}     
                 {!loading && 
